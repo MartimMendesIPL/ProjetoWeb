@@ -1,30 +1,26 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #EDEDED;
-    line-height: 1.6;
+body {  
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-header p {
-    font-size: 1.2rem;
-}
-
 /* Secção da Equipa */
+
+#form {
+    background-color: #EDEDED;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinha os elementos horizontalmente ao centro */
+    justify-content: center; /* Alinha os elementos verticalmente ao centro */
+    margin: 0 auto; /* Centraliza a div principal na página */
+    width: 100%; /* Define uma largura para a div */
+    padding: 20px; /* Adiciona espaçamento interno */
+    
+}
+
+
+
 #equipa {
     width: 90%;
     max-width: 800px;
@@ -33,6 +29,7 @@ header p {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
 }
 
 #equipa h2 {
@@ -47,6 +44,7 @@ header p {
 
 #equipa ul {
     list-style-type: none;
+    align-items: center;
 }
 
 #equipa ul li {
@@ -64,6 +62,18 @@ header p {
     margin-bottom: 20px;
 }
 
+#button {
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    align-items: center; /* Alinha os botões verticalmente */  
+}
+
+#button button{
+    margin-right: 0;
+
+}
+
+
 
 
 #formulario-contacto input[type="text"],
@@ -78,42 +88,4 @@ header p {
 }
 
 
-
-/* Redes Sociais */
-#redes-sociais {
-    width: 90%;
-    max-width: 800px;
-    padding: 20px;
-    background-color: #EDEDED;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-#redes-sociais h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 15px;
-}
-
-#redes-sociais ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#redes-sociais ul li {
-    display: inline-block;
-    margin: 0 10px;
-}
-
-#redes-sociais ul li a {
-    font-size: 1.2rem;
-    color: #333;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-#redes-sociais ul li a:hover {
-    color: #555;
-}
 
