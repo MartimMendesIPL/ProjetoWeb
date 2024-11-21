@@ -1,0 +1,8 @@
+/* Estilos da NavBar*/
+#logotipo_da_escola{
+    height: 75px; 
+    width: 165px;
+}
+#contact-btn:hover{
+    color: white;
+}
