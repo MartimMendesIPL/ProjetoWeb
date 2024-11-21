@@ -1,0 +1,14 @@
+#main_about_text{
+    font-weight: 500;
+    font-size: 16pt;
+}
+#img_about{
+    max-width: 130%;
+}
+
+#text_journey{
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

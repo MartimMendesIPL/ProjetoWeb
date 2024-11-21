@@ -7,6 +7,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/about_styles.css">
     </head>
     <body>
         <div class="container-fluid px-0">
@@ -27,39 +28,55 @@
                 </header>
             </div>
         </div>
-        <div class="container-fluid bg-light">
-            <h1 class="text-center pt-5 mb-4 fw-bold">Quem nós somos?</h1>
-
-            <p class="pt-3 fs-4 justify-content-center mb-5">A página "Sobre" foi criada para oferecer uma visão clara sobre o propósito e os valores deste projeto, 
-                desenvolvido no âmbito do Politécnico de Leiria. Esta secção destina-se a fornecer um contexto sobre a nossa missão, explicar o que motiva a nossa equipa e descrever como este site pode beneficiar os nossos utilizadores. 
-                Queremos criar uma conexão transparente e autêntica com os visitantes, compartilhando o nosso percurso, os nossos objetivos e o impacto que esperamos alcançar.
-            </p>
+        <div class="py-5 bg-light container-fluid" >
+            <div class="container">
+                <div class="row align-items-center gx-4">
+                    <div class="col-md-5">
+                        <div class="ms-md-2 ms-lg-5">
+                            <img class="img-fluid rounded-2" id="img_about" src="img/worldmap.png" alt="Mapa do Mundo">
+                        </div>
+                    </div>
+                    <div class="col-md-6 offset-md-1">
+                        <div class="ms-md-2 ms-lg-5">
+                            <h2 class="display-5 fw-bold text-center">Sobre nós</h2>
+                            <p id="main_about_text"> 
+                                A página "Sobre" foi criada para dar uma visão clara sobre o que é o nosso projeto e o que ele representa. Desenvolvido no Politécnico de Leiria, o objetivo aqui é compartilhar nossa missão e valores de uma forma simples e direta. 
+                                Queremos que você entenda o que nos move, o que nos inspira e como acreditamos que este site pode fazer a diferença para quem o acessa.
+                                Criar uma conexão verdadeira com quem nos visita, mostrando nossa história, os objetivos que temos e o impacto que esperamos alcançar.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="container-fluid">
-            <div class="row text-center">
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
-                    </svg>
-                    <h2 class="fw-normal">Martim Mendes</h2>
-                    <p>Nrº2241559</p>
+        <div class="container-fluid bg-dark py-5">
+            <div class="container">
+                <h2 class="fs-3 text-center fw-bold mb-4 text-white" id="title_journey">
+                    A nossa jornada começou com uma ideia simples:
+                </h2>
+                <p class="fs-5 text-justify text-white" id="text_journey">
+                    Tornar o conhecimento e a cultura acessíveis a todos. Criado por um grupo de pessoas apaixonadas pela educação e pela troca de ideias, este projeto nasceu com o objetivo de aproximar pessoas de diferentes partes do mundo através de uma plataforma interativa.
+                    Acreditamos que compartilhar experiências e informações pode transformar a maneira como vemos o mundo e criar uma comunidade mais unida. O nosso foco é oferecer aos utilizadores uma experiência única, cheia de conteúdo relevante e dinâmico, que os motive a explorar novas culturas, aprender sobre outros países e aproveitar tudo o que o mundo tem para oferecer.
+                </p>
+            </div>
+        </div>
+        
+        <div class="container-fluid py-5">
+            <div class="row text-center justify-content-center">
+                <div class="col-lg-2">
+                    <img src="img/Martim.jpg" class="bd-placeholder-img rounded-circle border border-3 border-black" width="200" height="200" alt="Martim Mendes"/>
+                    <h3 class="fw-bold pt-3">Martim Mendes</h2>
+                    <p class="fw-medium fs-5">Nº2241559</p>
                 </div>
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
-                    </svg>
-                    <h2 class="fw-normal">Henrik Dambros</h2>
-                    <p>Nrº224?????</p>
+                <div class="col-lg-2">
+                    <img src="img/henrik.jpg" class="bd-placeholder-img rounded-circle border border-3 border-black" width="200" height="200" alt="Henrik Dambros"/>
+                    <h3 class="fw-bold pt-3">Henrik Dambros</h2>
+                    <p class="fw-medium fs-5">Nº2241589</p>
                 </div>
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
-                    </svg>
-                    <h2 class="fw-normal">Afonso António</h2>
-                    <p>Nrº224?????</p>
+                <div class="col-lg-2">
+                    <img src="img/ladder.jpg" class="bd-placeholder-img rounded-circle border border-3 border-black" width="200" height="200" alt="Afonso António"/>
+                    <h3 class="fw-bold pt-3">Afonso António</h2>
+                    <p class="fw-medium fs-5">Nº2241602</p>
                 </div>
             </div>
         </div>
