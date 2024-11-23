@@ -1,0 +1,67 @@
+/* Estilos da NavBar*/
+#logotipo_da_escola{
+    height: 75px; 
+    width: 165px;
+}
+#contact-btn:hover{
+    color: white;
+}
+
+/* Estilos do Carroussel*/
+#botao_indicador_carrossel{
+    width: 80px; 
+    background-color: #1559B7;
+}
+#botao_do_carrossel{
+    filter: invert(29%) sepia(97%) saturate(1135%) hue-rotate(191deg) brightness(88%) contrast(96%);
+}
+#slide2{
+    background-color: #000000;
+}
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231559B7' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+.carousel-control-next-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%231559B7' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+.carousel-indicators{
+    bottom: -5px;
+}
+.carousel-item.active.pt-5.pb-5{
+    background-color: #EDEDED;
+}
+
+/* Estilos dos Countries */
+#flag-cards{
+    border: 2px solid rgb(219, 219, 219);
+    width: 22rem;
+}
+#flag-cards:hover{
+    border: 2px solid #1559B7;
+    cursor: pointer;
+}
+
+/* Estilos do Explorer World */
+#ExplorerWorld{
+    background: linear-gradient(rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 0.78)), 
+    url('../img/explorerWolrd.png') no-repeat;
+    background-size: cover;
+    
+}
+#ExplorerWorld p {
+    font-size: 18px;
+}
+
+/* Estilos do About Us */
+#about-cards{
+    width: 22rem;
+}
+#texto_do_card{
+    font-size: 14px;
+}
+
+#about-cards:hover{
+    border: 2px solid rgb(219, 219, 219);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+    transform: scale(1.03); /* Aumenta o botão em 10% */
+}
