@@ -1,5 +1,5 @@
 
-#contacto, #welcome {
+#welcome {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,47 +7,40 @@
     border-radius: 5px;
 }
 
-#box-welcome{
-    background-color: #EDEDED;
-}
 
-.map {
-    border-radius: 5px;
+#mapa {
+    display: flex;
     width: 100%;
-    height: 300px; /* Ajuste para altura consistente */
+    height: 300px;   
+    border-radius: 5px;
 }
 
-#image{
-
+#image img {
+    width: 100%; 
+    height: auto; /
 }
+  
 
 #contacto li{
     list-style-type: none;
+    align-items: center;
 }
 
 
 #mensagem{
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 5px;
     width: 70%;
-} 
+}
 
-#box-mensagem {
+#box-mensagem, #button{
     display: flex;
     justify-content: center; 
     align-items: center; 
 }
 
 
-#button {
-    display: flex;
-    justify-content: center; /* Centraliza os botões horizontalmente */
-    align-items: center; /* Alinha os botões verticalmente */  
-}
 
 #button button{
-    margin-right: 0;
+    margin-top: auto;
 }
 
 
