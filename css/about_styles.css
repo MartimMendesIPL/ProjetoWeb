@@ -3,7 +3,8 @@
     font-size: 16pt;
 }
 #img_about{
-    max-width: 130%;
+    width: 130%;
+    max-width: 600px;
 }
 
 #text_journey{
@@ -12,3 +13,10 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+@media (max-width: 768px) {
+    #img_about {
+      width: 100%; 
+      max-width: 100%; 
+    }
+  }
