@@ -1,14 +1,23 @@
 #main_about_text{
     font-weight: 500;
-    font-size: 16pt;
+    font-size: 1.25rem;
 }
 #img_about{
-    max-width: 130%;
+    width: 130%;
+    max-width: 600px;
 }
 
 #text_journey{
     width: 80%;
+    font-size: 1.25rem;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+
+@media (max-width: 768px) {
+    #img_about {
+      width: 100%; 
+      max-width: 100%; 
+    }
+  }
