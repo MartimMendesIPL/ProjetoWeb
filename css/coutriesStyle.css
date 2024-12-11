@@ -6,3 +6,16 @@
 #contact-btn:hover{
     color: white;
 }
+
+/*Estilos do filtro*/
+#filtro{
+    background-color: #EDEDED;
+}
+#selectFiltro{
+    width: 250px;
+}
+#btn-search{
+    border: 1px solid #1559B7;
+    background-color: #1559B7;
+    color:white;
+}
