@@ -9,7 +9,8 @@
 
 /* Estilos do Carroussel*/
 #botao_indicador_carrossel{
-    width: 100px; 
+    width: 100px;
+    height: 4px; 
     background-color: #1559B7;
 }
 #botao_do_carrossel{
