@@ -1,8 +1,48 @@
 /* Estilos da NavBar*/
-#logotipo_da_escola{
-    height: 75px; 
-    width: 165px;
+#logotipo_da_escola {
+  height: 75px;
+  width: 165px;
 }
-#contact-btn:hover{
-    color: white;
+#contact-btn:hover {
+  color: white;
+}
+
+/*Estilos do filtro*/
+#filtro {
+  background-color: #ededed;
+}
+#selectFiltro {
+  width: 250px;
+}
+#btn-search {
+  border: 1px solid #1559b7;
+  background-color: #1559b7;
+  color: white;
+}
+
+/*Estilos do card*/
+.cont:hover {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  transform: scale(1.03); /* Aumenta o botão em 10% */
+  border: 2px solid #1559b7;
+}
+.card-body {
+  height: 150px;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.card-body {
+  max-width: 290px; /* Set a maximum width */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.imagem-pais {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
 }
