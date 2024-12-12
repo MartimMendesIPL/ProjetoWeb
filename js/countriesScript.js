@@ -14,6 +14,14 @@ $(document).ready(function () {
         $(".imagem-pais", clonecard).attr("src", pais.flags.svg);
         $(".nome-pais", clonecard).text(pais.name.common);
         $(".populacao-pais", clonecard).text(pais.population.toLocaleString());
+        $('#btn-details').on("click", function () {
+            // Redireciona para a página de detalhes com o nome do país na query string
+            window.location.href = `details.html?country=${encodeURIComponent(pais.name.common)}`;
+        });
+        $('#img-details').on("click", function () {
+            // Redireciona para a página de detalhes com o nome do país na query string
+            window.location.href = `details.html?country=${encodeURIComponent(pais.name.common)}`;
+        });
         $(".lista-paises").append(clonecard);
     }
 
