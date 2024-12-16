@@ -7,7 +7,7 @@ $(document).ready(function () {
     if (countryName) {
         $.ajax({
             method: "GET",
-            url: `https://restcountries.com/v3.1/name/${countryName}`,
+            url: `https://restcountries.com/v3.1/name/${countryName}?fullText=true`,
         }).done(function (dados) {
             const pais = dados[0]; // Considerando que há apenas 1 resultado
 
