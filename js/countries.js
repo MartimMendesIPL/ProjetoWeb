@@ -1,3 +1,4 @@
+// [FILE: details.html]
 $(document).ready(function () {
     var cloneOriginal = $(".card-paises").clone();
     var dados = []; // Armazena os dados de países
@@ -14,14 +15,18 @@ $(document).ready(function () {
         $(".imagem-pais", clonecard).attr("src", pais.flags.svg);
         $(".nome-pais", clonecard).text(pais.name.common);
         $(".populacao-pais", clonecard).text(pais.population.toLocaleString());
-        $('#btn-details').on("click", function () {
-            // Redireciona para a página de detalhes com o nome do país na query string
-            window.location.href = `details.html?country=${encodeURIComponent(pais.name.common)}`;
+        $(".capital-pais", clonecard).text(pais.capital ? pais.capital[0] : "Não disponível");
+    
+        // Adicionando eventos de clique dentro do escopo do clone
+        $('#btn-details', clonecard).on("click", function () {
+            console.log('details.html?country=' + encodeURIComponent(pais.name.common));
+            window.location.href = 'details.html?country='+encodeURIComponent(pais.name.common);
         });
-        $('#img-details').on("click", function () {
-            // Redireciona para a página de detalhes com o nome do país na query string
-            window.location.href = `details.html?country=${encodeURIComponent(pais.name.common)}`;
+        $('#img-details', clonecard).on("click", function () {
+            console.log('details.html?country=' + encodeURIComponent(pais.name.common));
+            window.location.href = 'details.html?country='+encodeURIComponent(pais.name.common);
         });
+    
         $(".lista-paises").append(clonecard);
     }
 
