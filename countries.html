@@ -49,6 +49,16 @@
                         </select>
                     </div>
                     <div class="d-flex align-items-center">
+                        <label for="selectPaginacao" class="me-2">Ordenar Por</label>
+                        <select class="form-select" id="selectPaginacao" aria-label="Default select example">
+                            <option selected>Selecionar</option>
+                            <option value="pag-24">24</option>
+                            <option value="pag-32">32</option>
+                            <option value="pag-48">48</option>
+                            <option value="pag-64">64</option>
+                        </select>
+                    </div>
+                    <div class="d-flex align-items-center">
                         <input class="form-control me-2" id="searchInput" type="search" placeholder="Search" aria-label="Search"/>
                         <button class="btn btn-outline-success" id="btn-search" type="submit">Search</button>
                     </div>
@@ -84,6 +94,27 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="container-fluid d-flex justify-content-center mt-4 mb-4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
             </div>
             <div id="footer" class="container-fluid bg-light">
               <footer class="py-3">

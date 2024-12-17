@@ -1,9 +1,14 @@
 // [FILE: details.html]
+
 $(document).ready(function () {
     var cloneOriginal = $(".card-paises").clone();
     var dados = []; // Armazena os dados de países
+    var itemsPorPagina = 24; //Nr de cards por pagina
+    var pagina = 1;
     // Limpar a lista ao carregar
     $(".lista-paises").html("");
+    // Limpar a paginação ao carregar
+    $(".pagination").html("");
 
     // Função para criar e adicionar um card de país
     function appendCountryCard(pais) {
@@ -92,7 +97,59 @@ $(document).ready(function () {
     
         $(".lista-paises").append(clonecard);
     }
+    //Mostrar paises paginados
+    function displayPageData(){
+        $(".lista-paises").html(""); //Limpar lista
 
+        var inicio = (pagina - 1) * itemsPorPagina;
+        var fim = inicio + itemsPorPagina;
+
+        var pageData = dados.slice(inicio, fim); //Dados apenas para a pagina atual
+        pageData.forEach(appendCountryCard);
+    }
+    //Configurar a paginação
+    function setupPagination(){
+        var totalPages = Math.ceil(dados.length / itemsPorPagina);
+        var paginationContainer = $(".pagination");
+
+        paginationContainer.html(""); //Limpar Paginação
+
+        //Anterior
+        paginationContainer.append(`
+            <li class="page-item ${pagina === 1 ? 'disabled' : ''}">
+                <a class="page-link" href="#" aria-label="Previous">&laquo;</a>
+            </li>
+        `);
+
+        // Números de página
+        for (var i = 1; i <= totalPages; i++) {
+            paginationContainer.append(`
+                <li class="page-item ${pagina === i ? 'active' : ''}">
+                    <a class="page-link" href="#">${i}</a>
+                </li>
+            `);
+        }
+
+        //Próximo
+        paginationContainer.append(`
+            <li class="page-item ${pagina === totalPages ? 'disabled' : ''}">
+                <a class="page-link" href="#" aria-label="Next">&raquo;</a>
+            </li>
+        `);
+
+        // Eventos de clique
+        $(".page-link").on("click", function (e) {
+            e.preventDefault();
+            var text = $(this).text();
+
+            if (text === "«" && pagina > 1) pagina--;
+            else if (text === "»" && pagina < totalPages) pagina++;
+            else if (!isNaN(parseInt(text))) pagina = parseInt(text);
+
+            displayPageData();
+            setupPagination();
+        });
+    }
     // Requisição inicial para buscar os países
     $.ajax({
         method: "GET",
@@ -100,8 +157,9 @@ $(document).ready(function () {
     }).done(function (response) {
         dados = response; // Salvar os dados recebidos
 
-        // Adicionar os países na lista inicial
-        dados.forEach(appendCountryCard);
+        // Mostrar os paises por pagina
+        displayPageData();
+        setupPagination();
     });
 
     // Manipular o filtro de ordenação
@@ -121,8 +179,30 @@ $(document).ready(function () {
         }
 
         // Atualizar a lista com os dados ordenados
-        $(".lista-paises").html(""); // Limpar a lista
-        dadosOrdenados.forEach(appendCountryCard);
+        dados = dadosOrdenados;
+        pagina = 1;
+        displayPageData();
+        setupPagination();
+    });
+
+    $("#selectPaginacao").on("change", function () {
+        var filtro = $(this).val();
+
+        // Ordenar com base no filtro selecionado
+        if (filtro === "pag-24") {
+            itemsPorPagina = 24;
+        } else if (filtro === "pag-32") {
+            itemsPorPagina = 32;
+        } else if (filtro === "pag-48") {
+            itemsPorPagina = 48;
+        } else if (filtro === "pag-64") {
+            itemsPorPagina = 64;
+        }
+
+        // Atualizar a lista com os dados ordenados
+        pagina = 1;
+        displayPageData();
+        setupPagination();
     });
 
     // Manipular o botão de busca
@@ -158,4 +238,3 @@ $(document).ready(function () {
         }
     });
 });
-
