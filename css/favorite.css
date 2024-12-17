@@ -1,0 +1,9 @@
+.imagem-pais {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+.active {
+    fill: red; /* Altera a cor do SVG para vermelho */
+}

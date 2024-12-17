@@ -5,7 +5,6 @@ $(document).ready(function () {
     var dados = []; // Armazena os dados de países
     var itemsPorPagina = 24; //Nr de cards por pagina
     var pagina = 1;
-
     // Limpar a lista ao carregar
     $(".lista-paises").html("");
     // Limpar a paginação ao carregar
@@ -22,14 +21,78 @@ $(document).ready(function () {
         $(".populacao-pais", clonecard).text(pais.population.toLocaleString());
         $(".capital-pais", clonecard).text(pais.capital ? pais.capital[0] : "Não disponível");
     
+        // Recuperar a lista de favoritos do localStorage
+        var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        
+        // Verificar se o país já está nos favoritos
+        var isFavorite = favorites.some(function (favorite) {
+            return favorite.name === pais.name.common;
+        });
+    
+        // Alternar a visibilidade dos ícones com base na verificação
+        if (isFavorite) {
+            $('#btn-favorite svg.bi-heart', clonecard).hide(); // Oculta o coração não preenchido
+            $('#btn-favorite svg.bi-heart-fill', clonecard).show(); // Exibe o coração preenchido
+        } else {
+            $('#btn-favorite svg.bi-heart', clonecard).show(); // Exibe o coração não preenchido
+            $('#btn-favorite svg.bi-heart-fill', clonecard).hide(); // Oculta o coração preenchido
+        }
+    
         // Adicionando eventos de clique dentro do escopo do clone
         $('#btn-details', clonecard).on("click", function () {
             console.log('details.html?country=' + encodeURIComponent(pais.name.common));
-            window.location.href = 'details.html?country='+encodeURIComponent(pais.name.common);
+            window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common);
         });
+    
+        $('#btn-favorite', clonecard).on("click", function () {
+            // Criar um objeto com as informações do país
+            var countryData = {
+                flag: pais.flags.svg,
+                name: pais.name.common,
+                capital: pais.capital ? pais.capital[0] : "Não disponível",
+                population: pais.population // Salva como número
+            };
+    
+            // Recuperar a lista de favoritos do localStorage
+            var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    
+            // Verificar se o país já está nos favoritos (evitar duplicação)
+            var exists = favorites.some(function (favorite) {
+                return favorite.name === countryData.name;
+            });
+    
+            if (!exists) {
+                // Adicionar o novo país à lista de favoritos
+                favorites.push(countryData);
+    
+                // Atualizar o localStorage
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+    
+                console.log('País adicionado aos favoritos:', countryData);
+                
+                // Alternar a visibilidade dos ícones
+                $('#btn-favorite svg.bi-heart', clonecard).hide(); // Oculta o coração não preenchido
+                $('#btn-favorite svg.bi-heart-fill', clonecard).show(); // Exibe o coração preenchido
+            } else {
+                // Remover o país da lista de favoritos
+                favorites = favorites.filter(function (favorite) {
+                    return favorite.name !== countryData.name;
+                });
+    
+                // Atualizar o localStorage
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+    
+                console.log('País removido dos favoritos:', countryData);
+                
+                // Alternar a visibilidade dos ícones
+                $('#btn-favorite svg.bi-heart', clonecard).show(); // Exibe o coração não preenchido
+                $('#btn-favorite svg.bi-heart-fill', clonecard).hide(); // Oculta o coração preenchido
+            }
+        });
+    
         $('#img-details', clonecard).on("click", function () {
             console.log('details.html?country=' + encodeURIComponent(pais.name.common));
-            window.location.href = 'details.html?country='+encodeURIComponent(pais.name.common);
+            window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common);
         });
     
         $(".lista-paises").append(clonecard);
