@@ -11,6 +11,10 @@ $(document).ready(function () {
 
         $(".imagem-pais", clonecard).attr("src", pais.flags.svg);
         $(".nome-pais", clonecard).text(pais.name.common);
+        $('#img-details', clonecard).on("click", function () {
+            console.log('details.html?country=' + encodeURIComponent(pais.name.common));
+            window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common);
+        });
         $(".lista-paises").append(clonecard); // Adiciona o card ao DOM
     }
 
