@@ -1,17 +1,9 @@
-// [FILE: details.html]
-
 $(document).ready(function () {
-    var cloneOriginal = $(".card-paises").clone();
-    var dados = []; // Armazena os dados de países
-    var itemsPorPagina = 24; //Nr de cards por pagina
-    var pagina = 1;
-    // Limpar a lista ao carregar
-    $(".lista-paises").html("");
-    // Limpar a paginação ao carregar
-    $(".pagination").html("");
+    var cloneOriginal = $(".card-paises").clone(); var dados = []; var itemsPorPagina = 24; var pagina = 1; // declaração de variaveis
 
-    // Função para criar e adicionar um card de país
-    function appendCountryCard(pais) {
+    $(".lista-paises").html(""); // limpar o card modelo
+    $(".pagination").html(""); // limpar o navbar da paginação.
+    function appendCountryCard(pais) { // Função para adicionar os paises
         var clonecard = cloneOriginal.clone();
         if (pais.name.common === "Nepal") {
             $(".imagem-pais", clonecard).attr("style", "height: 200px; width: 100%; object-fit: fill;");
@@ -21,16 +13,10 @@ $(document).ready(function () {
         $(".populacao-pais", clonecard).text(pais.population.toLocaleString());
         $(".capital-pais", clonecard).text(pais.capital ? pais.capital[0] : "Não disponível");
     
-        // Recuperar a lista de favoritos do localStorage
         var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        
-        // Verificar se o país já está nos favoritos
         var isFavorite = favorites.some(function (favorite) {
             return favorite.name === pais.name.common;
-        });
-    
-        // Alternar a visibilidade dos ícones com base na verificação
-        if (isFavorite) {
+        });if (isFavorite) {
             $('#btn-favorite svg.bi-heart', clonecard).hide(); // Oculta o coração não preenchido
             $('#btn-favorite svg.bi-heart-fill', clonecard).show(); // Exibe o coração preenchido
         } else {
@@ -38,90 +24,63 @@ $(document).ready(function () {
             $('#btn-favorite svg.bi-heart-fill', clonecard).hide(); // Oculta o coração preenchido
         }
     
-        // Adicionando eventos de clique dentro do escopo do clone
         $('#btn-details', clonecard).on("click", function () {
             console.log('details.html?country=' + encodeURIComponent(pais.name.common));
             window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common);
         });
-    
         $('#btn-favorite', clonecard).on("click", function () {
-            // Criar um objeto com as informações do país
             var countryData = {
                 flag: pais.flags.svg,
                 name: pais.name.common,
                 capital: pais.capital ? pais.capital[0] : "Não disponível",
-                population: pais.population // Salva como número
+                population: pais.population
             };
-    
-            // Recuperar a lista de favoritos do localStorage
             var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    
-            // Verificar se o país já está nos favoritos (evitar duplicação)
             var exists = favorites.some(function (favorite) {
                 return favorite.name === countryData.name;
-            });
-    
-            if (!exists) {
-                // Adicionar o novo país à lista de favoritos
+            });if (!exists) {
                 favorites.push(countryData);
-    
-                // Atualizar o localStorage
+
                 localStorage.setItem('favorites', JSON.stringify(favorites));
-    
                 console.log('País adicionado aos favoritos:', countryData);
-                
-                // Alternar a visibilidade dos ícones
-                $('#btn-favorite svg.bi-heart', clonecard).hide(); // Oculta o coração não preenchido
-                $('#btn-favorite svg.bi-heart-fill', clonecard).show(); // Exibe o coração preenchido
+                $('#btn-favorite svg.bi-heart', clonecard).hide();
+                $('#btn-favorite svg.bi-heart-fill', clonecard).show();
             } else {
-                // Remover o país da lista de favoritos
                 favorites = favorites.filter(function (favorite) {
                     return favorite.name !== countryData.name;
                 });
-    
-                // Atualizar o localStorage
                 localStorage.setItem('favorites', JSON.stringify(favorites));
-    
                 console.log('País removido dos favoritos:', countryData);
-                
-                // Alternar a visibilidade dos ícones
-                $('#btn-favorite svg.bi-heart', clonecard).show(); // Exibe o coração não preenchido
-                $('#btn-favorite svg.bi-heart-fill', clonecard).hide(); // Oculta o coração preenchido
+                $('#btn-favorite svg.bi-heart', clonecard).show();
+                $('#btn-favorite svg.bi-heart-fill', clonecard).hide();
             }
         });
-    
         $('#img-details', clonecard).on("click", function () {
             console.log('details.html?country=' + encodeURIComponent(pais.name.common));
             window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common);
         });
-    
         $(".lista-paises").append(clonecard);
     }
-    //Mostrar paises paginados
+    //Secção de Paginação
     function displayPageData(){
-        $(".lista-paises").html(""); //Limpar lista
+        $(".lista-paises").html("");
 
         var inicio = (pagina - 1) * itemsPorPagina;
         var fim = inicio + itemsPorPagina;
-
-        var pageData = dados.slice(inicio, fim); //Dados apenas para a pagina atual
+        var pageData = dados.slice(inicio, fim);
         pageData.forEach(appendCountryCard);
     }
-    //Configurar a paginação
     function setupPagination(){
         var totalPages = Math.ceil(dados.length / itemsPorPagina);
         var paginationContainer = $(".pagination");
 
-        paginationContainer.html(""); //Limpar Paginação
+        paginationContainer.html("");
 
-        //Anterior
         paginationContainer.append(`
             <li class="page-item ${pagina === 1 ? 'disabled' : ''}">
                 <a class="page-link" href="#" aria-label="Previous">&laquo;</a>
             </li>
         `);
-
-        // Números de página
         for (var i = 1; i <= totalPages; i++) {
             paginationContainer.append(`
                 <li class="page-item ${pagina === i ? 'active' : ''}">
@@ -130,14 +89,12 @@ $(document).ready(function () {
             `);
         }
 
-        //Próximo
         paginationContainer.append(`
             <li class="page-item ${pagina === totalPages ? 'disabled' : ''}">
                 <a class="page-link" href="#" aria-label="Next">&raquo;</a>
             </li>
         `);
 
-        // Eventos de clique
         $(".page-link").on("click", function (e) {
             e.preventDefault();
             var text = $(this).text();
@@ -150,24 +107,20 @@ $(document).ready(function () {
             setupPagination();
         });
     }
-    // Requisição inicial para buscar os países
+    //Secção de Query 
     $.ajax({
         method: "GET",
         url: "https://restcountries.com/v3.1/all/",
     }).done(function (response) {
-        dados = response; // Salvar os dados recebidos
-
-        // Mostrar os paises por pagina
+        dados = response;
         displayPageData();
         setupPagination();
     });
-
-    // Manipular o filtro de ordenação
+    //Secção de Filtros
     $("#selectFiltro").on("change", function () {
         var filtro = $(this).val();
-        var dadosOrdenados = [...dados]; // Clonar os dados originais
+        var dadosOrdenados = [...dados];
 
-        // Ordenar com base no filtro selecionado
         if (filtro === "name-asc") {
             dadosOrdenados.sort((a, b) => a.name.common.localeCompare(b.name.common));
         } else if (filtro === "name-desc") {
@@ -178,17 +131,14 @@ $(document).ready(function () {
             dadosOrdenados.sort((a, b) => b.population - a.population);
         }
 
-        // Atualizar a lista com os dados ordenados
         dados = dadosOrdenados;
         pagina = 1;
         displayPageData();
         setupPagination();
     });
-
     $("#selectPaginacao").on("change", function () {
         var filtro = $(this).val();
 
-        // Ordenar com base no filtro selecionado
         if (filtro === "pag-24") {
             itemsPorPagina = 24;
         } else if (filtro === "pag-32") {
@@ -199,13 +149,10 @@ $(document).ready(function () {
             itemsPorPagina = 64;
         }
 
-        // Atualizar a lista com os dados ordenados
         pagina = 1;
         displayPageData();
         setupPagination();
     });
-
-    // Manipular o botão de busca
     $("#btn-search").on("click", function () {
         var termoBusca = $("#searchInput").val().trim();
 
@@ -214,9 +161,8 @@ $(document).ready(function () {
             return;
         }
 
-        $(".lista-paises").html(""); // Limpar a lista atual
+        $(".lista-paises").html("");
 
-        // Fazer uma nova requisição à API de tradução
         $.ajax({
             method: "GET",
             url: "https://restcountries.com/v3.1/translation/" + termoBusca,
@@ -230,11 +176,9 @@ $(document).ready(function () {
             alert("Nenhum país encontrado para o termo de busca informado.");
         });
     });
-
-    // Permitir busca ao pressionar Enter
     $("#searchInput").on("keypress", function (e) {
         if (e.which === 13) {
-            $("#btn-search").click(); // Simular clique no botão de busca
+            $("#btn-search").click();
         }
     });
 });
