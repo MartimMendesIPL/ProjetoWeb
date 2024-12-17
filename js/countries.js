@@ -154,6 +154,8 @@ $(document).ready(function () {
         setupPagination();
     });
     $("#btn-search").on("click", function () {
+        $(".pagination").html(""); // limpar o navbar da paginação.
+
         var termoBusca = $("#searchInput").val().trim();
 
         if (termoBusca === "") {
