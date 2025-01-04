@@ -1,8 +1,9 @@
 $(document).ready(function () {
-    var cloneOriginal = $(".card-paises").clone(); var dados = []; var itemsPorPagina = 24; var pagina = 1; // declaração de variaveis
+    var cloneOriginal = $(".card-paises").clone(); var dados = []; var itemsPorPagina = 24; var pagina = 1;
 
-    $(".lista-paises").html(""); // limpar o card modelo
-    $(".pagination").html(""); // limpar o navbar da paginação.
+    $(".lista-paises").html(""); // limpa o card modelo
+    $(".pagination").html(""); // limpa o navbar da paginação.
+
     function appendCountryCard(pais) { // Função para adicionar os paises
         var clonecard = cloneOriginal.clone();
         if (pais.name.common === "Nepal") {
@@ -26,7 +27,7 @@ $(document).ready(function () {
     
         $('#btn-details', clonecard).on("click", function () {
             console.log('details.html?country=' + encodeURIComponent(pais.name.common));
-            window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common);
+            window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common); // passa o nome common do pais ataves da url do site
         });
         $('#btn-favorite', clonecard).on("click", function () {
             var countryData = {
@@ -38,14 +39,14 @@ $(document).ready(function () {
             var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             var exists = favorites.some(function (favorite) {
                 return favorite.name === countryData.name;
-            });if (!exists) {
+            });if (!exists) { // adiciona o pais aos favoritos se ele nao existir na lista
                 favorites.push(countryData);
 
                 localStorage.setItem('favorites', JSON.stringify(favorites));
                 console.log('País adicionado aos favoritos:', countryData);
                 $('#btn-favorite svg.bi-heart', clonecard).hide();
                 $('#btn-favorite svg.bi-heart-fill', clonecard).show();
-            } else {
+            } else { // remove se tiver na llista
                 favorites = favorites.filter(function (favorite) {
                     return favorite.name !== countryData.name;
                 });
@@ -57,7 +58,7 @@ $(document).ready(function () {
         });
         $('#img-details', clonecard).on("click", function () {
             console.log('details.html?country=' + encodeURIComponent(pais.name.common));
-            window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common);
+            window.location.href = 'details.html?country=' + encodeURIComponent(pais.name.common); // passa o nome common do pais ataves da url do stie
         });
         $(".lista-paises").append(clonecard);
     }
@@ -110,11 +111,11 @@ $(document).ready(function () {
     //Secção de Query 
     $.ajax({
         method: "GET",
-        url: "https://restcountries.com/v3.1/all/",
+        url: "https://restcountries.com/v3.1/all/", // mostra todos os paises
     }).done(function (response) {
         dados = response;
         displayPageData();
-        setupPagination();
+        setupPagination(); // prepara a paginaçao
     });
     //Secção de Filtros
     $("#selectFiltro").on("change", function () {
@@ -122,13 +123,13 @@ $(document).ready(function () {
         var dadosOrdenados = [...dados];
 
         if (filtro === "name-asc") {
-            dadosOrdenados.sort((a, b) => a.name.common.localeCompare(b.name.common));
+            dadosOrdenados.sort((a, b) => a.name.common.localeCompare(b.name.common)); // Orderna os paises por ordem ascendente
         } else if (filtro === "name-desc") {
-            dadosOrdenados.sort((a, b) => b.name.common.localeCompare(a.name.common));
+            dadosOrdenados.sort((a, b) => b.name.common.localeCompare(a.name.common)); // Orderna os paises por ordem decrecendente
         } else if (filtro === "people-asc") {
-            dadosOrdenados.sort((a, b) => a.population - b.population);
+            dadosOrdenados.sort((a, b) => a.population - b.population); // Orderna os paises por ordem ascendente de populacao
         } else if (filtro === "people-desc") {
-            dadosOrdenados.sort((a, b) => b.population - a.population);
+            dadosOrdenados.sort((a, b) => b.population - a.population); // Orderna os paises por ordem decrecendente de populacao
         }
 
         dados = dadosOrdenados;
@@ -140,13 +141,13 @@ $(document).ready(function () {
         var filtro = $(this).val();
 
         if (filtro === "pag-24") {
-            itemsPorPagina = 24;
+            itemsPorPagina = 24; // mostra 24 paises por pagina
         } else if (filtro === "pag-32") {
-            itemsPorPagina = 32;
+            itemsPorPagina = 32; // mostra 32 paises por pagina
         } else if (filtro === "pag-48") {
-            itemsPorPagina = 48;
+            itemsPorPagina = 48; // mostra 48 paises por pagina
         } else if (filtro === "pag-64") {
-            itemsPorPagina = 64;
+            itemsPorPagina = 64; // mostra 64 paises por pagina
         }
 
         pagina = 1;
@@ -167,7 +168,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: "GET",
-            url: "https://restcountries.com/v3.1/translation/" + termoBusca,
+            url: "https://restcountries.com/v3.1/translation/" + termoBusca, // permite a busca em qualquer lingua
         }).done(function (response) {
             console.log(response);
 
@@ -179,7 +180,7 @@ $(document).ready(function () {
         });
     });
     $("#searchInput").on("keypress", function (e) {
-        if (e.which === 13) {
+        if (e.which === 13) { // ao clicar no enter faz a pesquisa do pais
             $("#btn-search").click();
         }
     });

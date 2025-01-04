@@ -1,10 +1,11 @@
 $(document).ready(function () {
-    var favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    var favorites = JSON.parse(localStorage.getItem('favorites')) || []; // puxa da webstorage os favoritos
     var cloneOriginal = $(".card-paises").clone();
+
     $(".lista-paises").html(""); 
 
     if (favorites.length === 0) {
-        $(".lista-paises").html(`<p class="text-center w-100 mt-4 pt-4 display-6">No favorites found.</p>`);
+        $(".lista-paises").html(`<p class="text-center w-100 mt-4 pt-4 display-6">No favorites found.</p>`); // Mensagem para quando nao houver paises
         return;
     }
 
@@ -22,9 +23,9 @@ $(document).ready(function () {
         });
         $('#btn-details', clonecard).on("click", function () {
             console.log('details.html?country=' + encodeURIComponent(country.name));
-            window.location.href = 'details.html?country=' + encodeURIComponent(country.name);
+            window.location.href = 'details.html?country=' + encodeURIComponent(country.name); // passa o nome common do pais ataves da url do site
         });
-        $('#btn-favorite', clonecard).on("click", function () {
+        $('#btn-favorite', clonecard).on("click", function () { // ao clicar no card remove o pais da lista de favoritos
             var countryData = {
                 flag: country.flag,
                 name: country.name,
